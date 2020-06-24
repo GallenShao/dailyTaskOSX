@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# running script
+
+rm tmp/*.jpg &>/dev/null
+
+/bin/sh ./download.sh
+image=$(ls tmp | grep jpg)
+
+test -z $image || osascript -e "tell application \"Finder\" to set desktop picture to POSIX file \"{DIR}/tmp/${image}\""

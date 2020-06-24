@@ -1,0 +1,27 @@
+{
+	"logLimits": 1000,
+
+	"startTime": 0,
+	"startInterval": 12,
+
+	"modules": [
+		{
+			"name": "BingWallpaper",
+			"on": true
+		},
+		{
+			"name": "FundsMonitor",
+			"on": true,
+			"config": {
+				"funds": [
+					{
+						"enable": true,
+						"code": "002611",
+						"name": "博时黄金ETF联接C",
+						"short": "黄金"
+					}
+				]
+			}
+		}
+	]
+}

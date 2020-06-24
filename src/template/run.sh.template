@@ -1,0 +1,13 @@
+#!/bin/sh
+
+ROOT_PATH=$(cd "$(dirname "$0")";pwd)/../
+cd $ROOT_PATH
+
+if [[ -e ./log/run.log && `cat ./log/run.log | wc -l` -gt {MAX} ]]
+then
+	cp ./log/run.log ./log/run.log.bak
+	tail -n {LIMIT} ./log/run.log.bak > ./log/run.log
+	rm ./log/run.log.bak
+fi
+
+{LIST}

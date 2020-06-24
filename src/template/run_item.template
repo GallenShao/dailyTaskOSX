@@ -1,0 +1,5 @@
+cd module/{MOD}
+echo [$(date)] Run {MOD} >> ../../log/run.log
+/bin/sh ./run.sh >> ../../log/run.log
+cd ../..
+

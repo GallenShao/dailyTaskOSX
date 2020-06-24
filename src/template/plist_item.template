@@ -1,0 +1,6 @@
+    <dict>
+      <key>Hour</key>
+      <integer>{HOUR}</integer>
+      <key>Minute</key>
+      <integer>0</integer>
+    </dict>
