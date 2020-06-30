@@ -4,6 +4,7 @@ import re
 import os
 import sys
 import json
+import time
 from config import get_config
 
 if sys.version_info.major == 2:
@@ -13,6 +14,18 @@ elif sys.version_info.major == 3:
 else:
 	print('Python 4? Not Supported.')
 	exit()
+
+
+def is_screen_on():
+	try:
+		result = os.popen('ioreg -n IODisplayWrangler |grep -i IOPowerManagement').read().decode('utf-8')
+		result = json.loads('{' + result.split('|')[-1].strip().replace('=',':') + '}')
+		screen_on = result['IOPowerManagement']['CurrentPowerState'] == 4
+		print('[%s] Current Screen State: ' % time.asctime() + ('On' if screen_on else 'Off'))
+		return screen_on
+	except:
+		print('[%s] Get Power State Failed' % time.asctime())
+		return True
 
 
 def send_dialog(content, title):
@@ -119,6 +132,6 @@ if __name__ == '__main__':
 				alert += history_template % (desc, days, days, desc, total_rate)
 			alert += '\n'
 
-	if alert:
+	if alert and is_screen_on():
 		send_dialog(alert, u"基金监控")
 
