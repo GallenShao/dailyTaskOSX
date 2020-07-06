@@ -111,7 +111,8 @@ if __name__ == '__main__':
 	for fund in funds:
 		history = funds_monitor(fund['code'])
 		if history is None:
-			notification += u'[%s] 价格爬取失败' % fund['short']
+			notification = u'[%s] 价格爬取失败' % fund['short']
+			send_noti(notification, fund['name'])
 			continue
 
 		yesterday = history[0]
